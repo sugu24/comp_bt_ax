@@ -5,13 +5,13 @@ std::vector<Sudoku> sudokus;
 
 int BEAM;
 int MAX_PARENT;
-int Converge14 = 1000000;
+int Converge14 = 1500000;
                 //  1~2  2~3  3~4  4~5  5~6  6~7  7~8  8~9  9~10 10~11 11~12 12~13  13~14
 int SaCount[13] = { 300, 300, 300, 300, 300, 300, 300, 300, 500, 700, 700, 700, 1000 };
 int BTs = 50;
 int startBT = 13;
 // int UnderConverve14 = 160000;
-int UnderConverve14 = 1000000;
+int UnderConverve14 = 1500000;
 int max_14_size = 8;
 
 int jump_number_of_hint;
@@ -266,7 +266,8 @@ void createSudoku17(int add_num_of_hint) {
             sudokus[id].AlgorithmX(add_num_of_hint);
         else {
             std::cout << "backtrack" << std::endl;
-            sudokus[id].doBacktrack_n(add_num_of_hint, add_num_of_hint, -1, 1000000);
+            sudokus[id].doBacktrack_n(add_num_of_hint, add_num_of_hint, -1, 1500000);
+            std::cout << "backtrack" << std::endl;
         }
         end = time(NULL);
 
@@ -353,7 +354,7 @@ int main(int argc, char *argv[]) {
     std::vector<std::tuple<int, int, int>> appears;
     int conv, id, hint;
     
-    if (argc == 3) {
+    if (argc == 4) {
         jump_number_of_hint = std::stoi(argv[1]);
         use_algorithmX = std::stoi(argv[2]) == 1;
         file_name = "sudoku" + std::to_string(BEAM) + "_" + std::to_string(MAX_PARENT) + "_.txt";

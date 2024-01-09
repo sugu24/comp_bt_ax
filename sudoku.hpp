@@ -60,7 +60,6 @@ class Sudoku {
         void recordAppearance();
         int createLeastMass();
         void backtrackAll(BACKTRACKRECORD record, int conv_limit);
-        void copyCand(std::vector<int> *v, int *skip[729]);
         
         // ---------- opHints ---------- //
         void addCandidateNumbers(int row, int col, int num);

@@ -211,11 +211,10 @@ int Sudoku::doBacktrack_n(int add, int add_num_of_hint, int bfr_mass, int least_
             ConvergeCount17 = Count;
         }
         return least_conv;
-    } else {
-        int skip[729];
+    } else if (add_num_of_hint > 0) {
+        bool skip[729];
 
         createCandidateHints();
-
         memcpy(skip, Skip, sizeof(skip));
 
         for (int mass = bfr_mass + 1; mass < 81; mass++) {
@@ -237,5 +236,8 @@ int Sudoku::doBacktrack_n(int add, int add_num_of_hint, int bfr_mass, int least_
             }
         }
         return least_conv;
+    } else {
+        std::cout << "error : add_num_of_hint is minus" << std::endl;
+        exit(1);
     }
 }

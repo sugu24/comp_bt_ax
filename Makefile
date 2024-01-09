@@ -4,7 +4,7 @@ OBJS=$(SRCS:.cpp=.o)
 CC=g++
 
 sudoku: $(OBJS)
-	$(CC) -O4 -g -o sudoku.exe $(OBJS) $(CFLAGS)
+	$(CC) -O4 -o sudoku.exe $(OBJS) $(CFLAGS)
 
 $(OBJS): 
 	$(CC) -O4 -flto -o $@ $(CFLAGS) -c $*.cpp 
