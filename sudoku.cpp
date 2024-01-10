@@ -398,7 +398,7 @@ int main(int argc, char *argv[]) {
     std::fstream f;
     file_name = "result_algoX_.txt";
     f.open(file_name, std::ios::app);
-    f << jump_number_of_hint << " " << use_algorithmX << " " << sudoku.getHints().size() << " " << sudoku.getConvergeCount14() << " " << END - START << " " << times << "hint ->";
+    f << BEAM << " " << MAX_PARENT << " " << 0 << " " << sudoku.getHints().size() << " " << sudoku.getConvergeCount14() << " " << END - START << " " << times << "hint ->";
     // f << sudoku.getIndex() << " " << LOOPCOUNT << " " << sudoku.getHints().size() << " " << sudoku.getConvergeCount14() << " " << END - START << " " << times << " " << sudoku.getBfrId() << std::endl;
     for (auto hint : sudoku.getHints())
         f << " ( " << hint.first / 9 << " " << hint.first % 9 << " " << hint.second << " )";
