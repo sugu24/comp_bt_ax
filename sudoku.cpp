@@ -84,7 +84,10 @@ void setAppears(int HintCount, std::vector<std::tuple<int, int, int>> *appears, 
             int p = std::get<1>(*iter);
             if (parent[p] >= MAX_PARENT)
                 iter = appears->erase(iter);
-            else {
+            else if (HintCount == 14 && parent[p] >= 20) {
+	      iter = appears->erase(iter);
+	    }
+	    else {
                 parent[p]++;
                 iter++;
             }
@@ -262,7 +265,7 @@ void createSudoku17(int add_num_of_hint) {
     // f.open("algoX_bt.txt", std::ios::app);
     for (int id = 0; id < sudokus.size(); id++) {
         start = time(NULL);
-        if (use_algorithmX)
+        if (true)
             sudokus[id].AlgorithmX(add_num_of_hint);
         else {
             std::cout << "backtrack" << std::endl;
@@ -354,16 +357,16 @@ int main(int argc, char *argv[]) {
     std::vector<std::tuple<int, int, int>> appears;
     int conv, id, hint;
     
-    if (argc == 4) {
-        jump_number_of_hint = std::stoi(argv[1]);
-        use_algorithmX = std::stoi(argv[2]) == 1;
+    if (argc == 3) {
+        // jump_number_of_hint = std::stoi(argv[1]);
+        // use_algorithmX = std::stoi(argv[2]) == 1;
+        BEAM = std::stoi(argv[1]);
+        MAX_PARENT = std::stoi(argv[2]);
+        jump_number_of_hint = 16;
         file_name = "sudoku" + std::to_string(BEAM) + "_" + std::to_string(MAX_PARENT) + "_.txt";
     }
     else 
         exit(printf("argc is not 3\n"));
-
-    BEAM = 1;
-    MAX_PARENT = 1;
 
     std::cout << jump_number_of_hint << " " << use_algorithmX << std::endl;
     START = time(NULL);
