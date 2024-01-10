@@ -257,19 +257,20 @@ void createSudoku17(int add_num_of_hint) {
     int conv, id, hint14;
     int hint15, hint16, hint17;
     // conv, id, hint, hint, hint
-    std::vector<std::vector<int>> add_hints(sudokus.size());
+    std::vector<std::vector<int>> add_hints;
     time_t start, end;
 
     // backtrack all 
     // std::fstream f;
     // f.open("algoX_bt.txt", std::ios::app);
-    for (int id = 0; id < sudokus.size(); id++) {
+    int ID;
+    for (ID = 0; ID < sudokus.size(); ID++) {
         start = time(NULL);
         if (true)
-            sudokus[id].AlgorithmX(add_num_of_hint);
+            sudokus[ID].AlgorithmX(add_num_of_hint);
         else {
             std::cout << "backtrack" << std::endl;
-            sudokus[id].doBacktrack_n(add_num_of_hint, add_num_of_hint, -1, 1500000);
+            sudokus[ID].doBacktrack_n(add_num_of_hint, add_num_of_hint, -1, 1500000);
             std::cout << "backtrack" << std::endl;
         }
         end = time(NULL);
@@ -283,16 +284,19 @@ void createSudoku17(int add_num_of_hint) {
             f.close();
         }
 
-        // f << end - start << " ) " << sudokus[id].getConvergeCount14() << std::endl;
-        sudokus[id].setIndex(id);
+        // f << end - start << " ) " << sudokus[ID].getConvergeCount14() << std::endl;
+        sudokus[ID].setIndex(ID);
         
-        printf("sudoku getConverge %d\n", sudokus[id].getConvergeCount17());
-        if (sudokus[id].getConvergeCount17() == 1)
+        printf("sudoku getConverge %d\n", sudokus[ID].getConvergeCount17());
+        if (sudokus[ID].getConvergeCount17() == 1) {
+            ID++;
             break;
+        }
     }
 
     // add_num_of_hint 個のヒントを記録
-    for (int id = 0; id < sudokus.size(); id++) {
+    for (int id = 0; id < ID; id++) {
+        add_hints.push_back(std::vector<int>());
         if (sudokus[id].getConvergeCount17() == 100000000) continue;
         auto hints = sudokus[id].getAddHints();
         
