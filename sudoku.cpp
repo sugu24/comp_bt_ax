@@ -317,9 +317,10 @@ void createSudoku17(int add_num_of_hint) {
     // 3つ追加したSudokuをbeam個生成
     int remove = sudokus.size();
     for (auto add_hint : add_hints) {
+        int id = add_hint[1];
         auto sudoku = sudokus[id];
         for (int i = 0; i < add_num_of_hint; i++)
-            sudoku = Sudoku(sudoku, add_hints[id][1], add_hints[id][0], add_hints[id][i + 2]);
+            sudoku = Sudoku(sudoku, add_hint[1], add_hint[0], add_hint[i + 2]);
         sudokus.push_back(sudoku);
     }
     for (int i = 0; i < remove; i++) sudokus.erase(sudokus.begin());

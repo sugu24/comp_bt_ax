@@ -388,11 +388,11 @@ int Sudoku::AlgorithmX(int add_temp_hint) {
     if (add_temp_hint == THREE)
         min_sol = 1000;
     else if (add_temp_hint == ZERO)
-        min_sol = 1000000;
+        min_sol = 1700000;
     else if (add_temp_hint == MINUS) 
         min_sol = 2;
     else if (add_temp_hint == ONE)
-        min_sol = 1000000;
+        min_sol = 1700000;
     
     printf("%d %d %d %d %d\n", add_temp_hint, THREE, ZERO, MINUS, ONE);
     // Dancing Linkの初期化
