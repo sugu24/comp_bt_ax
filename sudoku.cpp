@@ -84,10 +84,10 @@ void setAppears(int HintCount, std::vector<std::tuple<int, int, int>> *appears, 
             int p = std::get<1>(*iter);
             if (parent[p] >= MAX_PARENT)
                 iter = appears->erase(iter);
-            else if (HintCount == 14 && parent[p] >= 20) {
-	      iter = appears->erase(iter);
-	    }
-	    else {
+            else if (HintCount == 14 && parent[p] >= beam / BEAM) {
+	            iter = appears->erase(iter);
+	        }
+            else {
                 parent[p]++;
                 iter++;
             }
@@ -233,7 +233,7 @@ void createSudoku14(int beam) {
     // f << std::endl << std::endl;
     // f.close();
 
-    hint14thsResize(beam, &hint14ths);
+    setAppears(15, &hint14ths, beam);
     for (auto hint14th : hint14ths)
         std::cout << " [ " << std::get<0>(hint14th) << " " << std::get<1>(hint14th) << " " << std::get<2>(hint14th) << " ]";
     std::cout << std::endl;
@@ -401,7 +401,7 @@ int main(int argc, char *argv[]) {
 
     // ---------- result ---------- //
     std::fstream f;
-    file_name = "result_algoX.txt";
+    file_name = "comb_bt_ax.txt";
     f.open(file_name, std::ios::app);
     f << BEAM << " " << MAX_PARENT << " " << 0 << " " << sudoku.getHints().size() << " " << sudoku.getConvergeCount14() << " " << END - START << " " << times << "hint ->";
     // f << sudoku.getIndex() << " " << LOOPCOUNT << " " << sudoku.getHints().size() << " " << sudoku.getConvergeCount14() << " " << END - START << " " << times << " " << sudoku.getBfrId() << std::endl;
